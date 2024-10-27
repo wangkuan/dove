@@ -1,0 +1,31 @@
+infra:
+  monitors:
+    prometheus:
+      alertmanager:
+        ingress:
+          enabled: true
+          hostname: alertmanager.localhost
+        service:
+          type: ClusterIP
+      server:
+        ingress:
+          enabled: true
+          hostname: prometheus.localhost
+        service:
+          type: ClusterIP
+
+    grafana:
+      ingress:
+        enabled: true
+        hostname: grafana.localhost
+        
+  middlewares:
+    minio:
+      ingress:
+        enabled: true
+        hostname: minio.localhost
+
+    rabbitmq:
+      ingress:
+        enabled: true
+        hostname: rabbitmq.localhost

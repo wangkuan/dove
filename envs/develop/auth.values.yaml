@@ -1,0 +1,76 @@
+secret:
+  grafanaPassword: P@ssw0rd
+  memcachedPassword: P@ssw0rd
+  minioRootUser: admin
+  minioRootPassword: P@ssw0rd
+  mongodbPasswords: |
+    - password1
+    - password2
+    - password3
+  mongodbRootPassword: P@ssw0rd
+  mongodbMetricsPassword: P@ssw0rd
+  mongodbReplicaSetKey: 1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
+  mysqlRootPassword: P@ssw0rd
+  mysqlPassword: P@ssw0rd
+  mysqlReplicationPassword: P@ssw0rd
+  rabbitmqPassword: P@ssw0rd
+  rabbitmqErlangCookie: Q4rct7LRJk2YmqqtokewD97WwVC2vREn
+  redisPassword: P@ssw0rd
+
+infra:
+  monitors:
+    grafana:
+      admin:
+        existingSecret: auth-grafana
+        existingSecretPasswordKey: grafana_password
+
+    grafana-loki:
+      memcached:
+        containerSecurityContext:
+          readOnlyRootFilesystem: false
+        auth:
+          enabled: true
+          username: user
+          existingPasswordSecret: auth-memcached
+
+    prometheus:
+
+  middlewares:
+    minio:
+      auth:
+        existingSecret: auth-minio
+        rootUserSecretKey: minio_root_user
+        rootPasswordSecretKey: minio_root_password
+
+    mongodb:
+      auth:
+        rootUser: admin
+        usernames:
+          - user1
+          - user2
+          - user3
+        databases:
+          - db1
+          - db2
+          - db3
+        existingSecret: auth-mongodb
+
+    mysql:
+      auth:
+        username: mysql
+        existingSecret: auth-mysql
+        # usePasswordFiles: true
+
+
+    rabbitmq:
+      auth:
+        existingPasswordSecret: auth-rabbitmq
+        existingSecretPasswordKey: rabbitmq-password
+        existingErlangSecret: auth-rabbitmq
+        existingSecretErlangKey: rabbitmq-erlang-cookie
+
+    redis:
+      auth:
+        username: user
+        existingSecret: auth-redis
+        existingSecretPasswordKey: redis-password

@@ -1,0 +1,27 @@
+infra:
+  middlewares:
+    minio:
+      mode: distributed
+      statefulset:
+        replicaCount: 4
+        zones: 2
+        drivesPerNode: 2
+
+    mongodb:
+      architecture: standalone
+
+    mysql:
+      architecture: replication
+      secondary:
+        replicaCount: 0
+
+    rabbitmq:
+      clustering:
+        enabled: false
+
+    redis:
+      architecture: replication
+      replica:
+        replicaCount: 3
+      sentinel:
+        enabled: true

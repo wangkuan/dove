@@ -1,0 +1,21 @@
+infra:
+  middlewares:
+    minio:
+      mode: standalone
+
+    mongodb:
+      architecture: standalone
+
+    mysql:
+      architecture: replication
+      secondary:
+        replicaCount: 0
+
+    rabbitmq:
+      clustering:
+        enabled: false
+
+    redis:
+      architecture: standalone
+      replica:
+        replicaCount: 0

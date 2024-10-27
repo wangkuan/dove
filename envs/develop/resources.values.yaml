@@ -1,0 +1,144 @@
+infra:
+  monitors:
+    grafana:
+      grafana:
+        resources: {}
+      persistence:
+        enabled: false
+              
+    grafana-loki:
+      compactor:
+        resources: {}
+        persistence:
+          enabled: false
+      gateway:
+        resources: {}
+      indexGateway:
+        resources: {}
+        persistence:
+          enabled: false
+      distributor:
+        resources: {}
+      ingester:
+        persistence:
+          enabled: false
+        resources: {}
+      querier:
+        persistence:
+          enabled: false
+        resources: {}
+      queryFrontend:
+        resources: {}
+      queryScheduler:
+        resources: {}
+      ruler:
+        persistence:
+          enabled: false
+        resources: {}
+      tableManager:
+        resources: {}
+      promtail:
+        resources: {}
+      volumePermissions:
+        resources: {}
+      memcachedchunks:
+        resources: {}
+      memcachedfrontend:
+        resources: {}
+      memcachedindexqueries:
+        resources: {}
+      memcachedindexwrites:
+        resources: {}
+
+    prometheus:
+      alertmanager:
+        resources: {}
+        persistence:
+          enabled: false
+      server:
+        resources: {}
+        persistence:
+          enabled: false
+        thanos:
+          resources: {}
+      volumePermissions:
+        resources: {}
+
+  middlewares:
+    minio:
+      resources: {}
+      persistence:
+        enabled: false
+      provisioning:
+        resources: {}
+      volumePermissions:
+        resources: {}
+
+    mongodb:
+      resources: {}
+      persistence:
+        enabled: false
+      tls:
+        resources: {}
+      externalAccess:
+        autoDiscovery:
+          resources: {}
+        dnsCheck:
+          resources: {}
+      backup:
+        cronjob:
+          resources: {}
+      volumePermissions:
+        resources: {}
+      arbiter:
+        resources: {}
+      hidden:
+        resources: {}
+        persistence:
+          enabled: false
+      metrics:
+        resources: {}
+ 
+    mysql:
+      primary:
+        resources: {}
+        persistence:
+          enabled: false
+      secondary:
+        resources: {}
+        persistence:
+          enabled: false
+      volumePermissions:
+        resources: {}
+      metrics:
+        resources: {}
+
+
+    rabbitmq:
+      resources: {}
+      persistence:
+        enabled: false
+      volumePermissions:
+        resources: {}
+        
+    redis:
+      master:
+        resources: {}
+        persistence:
+          enabled: false
+      replica:
+        resources: {}
+        persistence:
+          enabled: false
+      sentinel:
+        resources: {}
+        persistence:
+          enabled: false
+      metrics:
+        resources: {}
+      volumePermissions:
+        resources: {}
+      kubectl:
+        resources: {}
+      sysctl:
+        resources: {}

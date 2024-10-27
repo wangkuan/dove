@@ -1,0 +1,135 @@
+infra:
+  monitors:
+    grafana:
+      image:
+        registry: docker.io
+        repository: bitnami/grafana
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+
+    grafana-loki:
+      loki:
+        image:
+          registry: docker.io
+          repository: bitnami/grafana-loki
+      gateway:
+        image:
+          registry: docker.io
+          repository: bitnami/nginx
+      promtail:
+        image:
+          registry: docker.io
+          repository: bitnami/promtail
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+          
+    prometheus:
+      alertmanager:
+        image:
+          registry: docker.io
+          repository: bitnami/alertmanager
+      server:
+        image:
+          registry: docker.io
+          repository: bitnami/prometheus
+        thanos:
+          image:
+            registry: docker.io
+            repository: bitnami/thanos
+      volumePermissions:
+        enabled: false
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+
+  middlewares:
+    minio:
+      image:
+        registry: docker.io
+        repository: bitnami/minio
+      clientImage:
+        registry: docker.io
+        repository: bitnami/minio-client
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+
+    mongodb:
+      image:
+        registry: docker.io
+        repository: bitnami/mongodb
+      tls:
+        image:
+          registry: docker.io
+          repository: bitnami/nginx
+      externalAccess:
+        autoDiscovery:
+          image:
+            registry: docker.io
+            repository: bitnami/kubectl
+        dnsCheck:
+          image:
+            registry: docker.io
+            repository: bitnami/os-shell
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+      metrics:
+        image:
+          registry: docker.io
+          repository: bitnami/mongodb-exporter
+
+    mysql:
+      image:
+        registry: docker.io
+        repository: bitnami/mysql
+        tag: 8.0.40-debian-12-r0  # 因为 exporter 还不支持 8.4.3 数据库，故先用老版本
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+      metrics:
+        image:
+          registry: docker.io
+          repository: bitnami/mysqld-exporter
+
+
+    rabbitmq:
+      image:
+        registry: docker.io
+        repository: bitnami/rabbitmq
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+
+    redis:
+      image:
+        registry: docker.io
+        repository: bitnami/redis
+      sentinel:
+        image:
+          registry: docker.io
+          repository: bitnami/redis-sentinel
+      metrics:
+        image:
+          registry: docker.io
+          repository: bitnami/redis-exporter
+      volumePermissions:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
+      kubectl:
+        image:
+          registry: docker.io
+          repository: bitnami/kubectl
+      sysctl:
+        image:
+          registry: docker.io
+          repository: bitnami/os-shell
